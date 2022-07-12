@@ -5054,6 +5054,11 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
 .loaded_1F-os .image_3FddB {
         opacity: var(--opacity-active);
     }
+.component_3tgd- {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
 .component_3tgd- svg {
     fill: currentColor;
 }
