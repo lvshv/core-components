@@ -14201,7 +14201,8 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
 .component_2zsIF {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
-    display: grid
+    display: grid;
+    grid-template-columns: 1fr auto
 }
 .component_2zsIF.horizontal_pQFb9 {
         /* for button */
