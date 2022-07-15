@@ -17213,6 +17213,9 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
 .changelog_1uMiQ h3.sbdocs {
         margin-top: var(--gap-m);
     }
+.cssVars_3WOnR {
+    margin-top: var(--gap-xl-neg);
+}
 .status_1Rf8u {
     margin: var(--gap-xs) 0 0;
 }
