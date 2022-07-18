@@ -16318,14 +16318,9 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
     }
 .container_1b55b {
     position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     overflow-x: auto;
     overflow-y: hidden;
+    scroll-behavior: smooth;
     scrollbar-width: none
 }
 .container_1b55b::-webkit-scrollbar {
@@ -16335,8 +16330,15 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
         -ms-flex-negative: 0;
             flex-shrink: 0;
     }
+.fullWidthScroll_1CigX {
+    margin: 0 var(--gap-m-neg);
+}
 .component_2iOcg {
-    position: relative
+    position: relative;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    min-width: 100%
 }
 .component_2iOcg:before {
         content: '';
@@ -16347,11 +16349,13 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
         width: 100%;
         background-color: var(--primary-tablist-bottom-border-color);
     }
+.fullWidthScroll_1PPyl {
+    min-width: calc(100% - 2 * var(--gap-m));
+    margin: 0 var(--gap-m);
+}
 .container_6yQ-p {
     position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    overflow: hidden;
 }
 .title_3fPZu {
     display: -webkit-box;
@@ -16451,20 +16455,15 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
 }
 .component_1yJHl {
     position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+.fullWidthScroll_27Iq4 {
+    margin: 0 var(--gap-m);
 }
 .container_3rvXs {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    overflow: hidden;
 }
 .title_3zomL {
     white-space: nowrap;
