@@ -6007,6 +6007,21 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
 .expandedLabel_7D_En {
     margin-top: 15px;
 }
+.component_Iu4VT {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 10px var(--gap-m);
+    background-color: var(--color-light-bg-secondary);
+    border-radius: var(--border-radius-s) var(--border-radius-xxl) var(--border-radius-xxl)
+        var(--border-radius-xxl);
+}
+.text_11Bor {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 .component_2Qma- {
     display: -webkit-box;
     display: -ms-flexbox;
