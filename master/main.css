@@ -3511,8 +3511,8 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    border-top-right-radius: var(--border-radius-xl);
-    border-top-left-radius: var(--border-radius-xl);
+    border-top-right-radius: var(--border-radius-3xl);
+    border-top-left-radius: var(--border-radius-3xl);
     background: var(--color-light-bg-primary);
     -webkit-transform: translateY(100%);
             transform: translateY(100%);
@@ -18177,6 +18177,7 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
     --border-radius-l: 12px;
     --border-radius-xl: 16px;
     --border-radius-xxl: 20px;
+    --border-radius-3xl: 24px;
     --border-radius-circle: 50%;
     --border-radius-pill: 99px;
 }
