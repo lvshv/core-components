@@ -842,8 +842,8 @@ a.loading_1jKXs {
     --plate-border-radius: var(--border-radius-m);
 
     /* icons */
-    --plate-closer-icon: url('https://alfabank.gcdn.co/icons/glyph_cross_m.svg');
-    --plate-arrow-icon: url('https://alfabank.gcdn.co/icons/glyph_chevron-down_m.svg');
+    --plate-closer-icon: url('https://alfabank.servicecdn.ru/icons/glyph_cross_m.svg');
+    --plate-arrow-icon: url('https://alfabank.servicecdn.ru/icons/glyph_chevron-down_m.svg');
 }
 .component_2E-YU {
     position: relative;
@@ -7211,7 +7211,7 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
     padding-left: var(--gap-2xl);
 }
 :root {
-    --gallery-broken-image-icon: url('https://alfabank.gcdn.co/icons/art_no-image_s.svg');
+    --gallery-broken-image-icon: url('https://alfabank.servicecdn.ru/icons/art_no-image_s.svg');
 }
 .component_3k0DP {
     display: -webkit-box;
@@ -11555,7 +11555,7 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
     --select-checkmark-unselected-opacity: 0;
     --select-checkmark-background: var(--color-light-graphic-primary);
     --select-checkmark-border-radius: var(--border-radius-circle);
-    --select-mobile-checkmark-background: url('https://alfabank.gcdn.co/icons/glyph_checkmark_m.svg');
+    --select-mobile-checkmark-background: url('https://alfabank.servicecdn.ru/icons/glyph_checkmark_m.svg');
 
     /* optgroup */
 
@@ -16872,8 +16872,8 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
     --input-placeholder-color: var(--color-light-text-secondary);
     --input-focus-placeholder-color: var(--color-light-text-tertiary);
     --input-with-label-placeholder-color: var(--color-light-text-tertiary);
-    --input-error-icon: url('https://alfabank.gcdn.co/icons/glyph_alert-circle_m_negative.svg');
-    --input-success-icon: url('https://alfabank.gcdn.co/icons/icon_ok_s_color.svg');
+    --input-error-icon: url('https://alfabank.servicecdn.ru/icons/glyph_alert-circle_m_negative.svg');
+    --input-success-icon: url('https://alfabank.servicecdn.ru/icons/icon_ok_s_color.svg');
     --input-caret-color: var(--input-color);
 
     /* disabled */
@@ -17035,8 +17035,8 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
     --input-inverted-placeholder-color: var(--color-light-text-secondary-inverted-transparent);
     --input-inverted-focus-placeholder-color: var(--color-light-text-tertiary-inverted);
     --input-inverted-with-label-placeholder-color: var(--color-light-text-tertiary-inverted);
-    --input-inverted-error-icon: url('https://alfabank.gcdn.co/icons/glyph_alert-circle_m_negative.svg');
-    --input-inverted-success-icon: url('https://alfabank.gcdn.co/icons/icon_ok_s_color.svg');
+    --input-inverted-error-icon: url('https://alfabank.servicecdn.ru/icons/glyph_alert-circle_m_negative.svg');
+    --input-inverted-success-icon: url('https://alfabank.servicecdn.ru/icons/icon_ok_s_color.svg');
     --input-inverted-caret-color: var(--input-inverted-color);
 
     /* disabled */
