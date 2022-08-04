@@ -2358,6 +2358,7 @@ input:focus:not(:read-only) + .suffixContainer_3UK5m,
 .textHidden_3HOvm input {
     opacity: 0;
 }
+/* purgecss ignore */
 .component_XtI5v {
     /* TODO: как это будет собираться и работать в webView */
     --form-control-border-radius: 0;
