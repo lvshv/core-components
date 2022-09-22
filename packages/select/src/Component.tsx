@@ -8,11 +8,13 @@ import { BaseSelect } from './components/base-select';
 import { BaseSelectProps } from './typings';
 import { FormControlProps } from '../../form-control/src/Component';
 
+export type SelectFieldProps = FormControlProps & Record<string, unknown>;
+
 export type SelectProps = Omit<BaseSelectProps, 'fieldProps'> & {
     /**
      * Пропсы, которые будут прокинуты в компонент поля
      */
-    fieldProps?: FormControlProps & Record<string, unknown>;
+    fieldProps?: SelectFieldProps;
 };
 
 export const Select = forwardRef<HTMLDivElement, SelectProps>(
