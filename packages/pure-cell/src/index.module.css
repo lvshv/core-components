@@ -2,6 +2,8 @@
 
 .component {
     text-align: unset;
+    line-height: 0;
+    box-sizing: border-box;
 }
 
 .horizontal {

@@ -1,3 +1,309 @@
+Одиночный выбор
+
+```jsx live
+const options = [
+    { key: '1', content: 'Neptunium' },
+    { key: '2', content: 'Plutonium' },
+    { key: '3', content: 'Americium' },
+    { key: '4', content: 'Curium' },
+    { key: '5', content: 'Berkelium' },
+    { key: '6', content: 'Californium' },
+    { key: '7', content: 'Einsteinium' },
+    { key: '8', content: 'Fermium' },
+];
+
+render(<Select options={options} placeholder='Выберите элемент' Option={BaseOption} />);
+```
+
+Одиночный выбор, контент внутри option в несколько строк.
+
+```jsx live
+const options = [
+    { key: '1', content: 'Пример контента в несколько строк' },
+    { key: '2', content: 'Контент опции больше не скрывается за ...' },
+];
+
+render(
+    <div style={{ width: 250 }}>
+        <Select
+            options={options}
+            placeholder='Выберите элемент'
+            Option={BaseOption}
+            optionsListWidth='field'
+            block={true}
+        />
+    </div>,
+);
+```
+
+Множественный выбор
+
+```jsx live
+const options = [
+    { key: '1', content: 'Neptunium' },
+    { key: '2', content: 'Plutonium' },
+    { key: '3', content: 'Americium' },
+    { key: '4', content: 'Curium' },
+    { key: '5', content: 'Berkelium' },
+    { key: '6', content: 'Californium' },
+    { key: '7', content: 'Einsteinium' },
+    { key: '8', content: 'Fermium' },
+];
+
+render(
+    <Select options={options} placeholder='Выберите элемент' Option={BaseOption} multiple={true} />,
+);
+```
+
+Выбор с подтверждением
+
+```jsx live
+const options = [
+    { key: '40708810300024636781', content: 'Валютный счёт $ ··6781', value: 'USD ··6781' },
+    { key: '40701810200000000593', content: 'Рублёвый счёт ₽ ··0593', value: 'RUB ··0593' },
+    { key: '40700810000000017103', content: 'Рублёвый счёт ₽ ··7103', value: 'RUB ··7103' },
+    { key: '40817810668001680128', content: 'Рублёвый счёт ₽ ··0128', value: 'RUB ··0128' },
+    { key: '40832810700000000212', content: 'Валютный счёт € ··0212', value: 'EUR ··0212' },
+    { key: '40832810700000000213', content: 'Валютный счёт € ··0213', value: 'EUR ··0213' },
+    { key: '40832810700000000214', content: 'Валютный счёт € ··0214', value: 'EUR ··0214' },
+    { key: '40832810700000000215', content: 'Валютный счёт € ··0215', value: 'EUR ··0215' },
+];
+
+render(() => {
+    const [selected, setSelected] = React.useState([]);
+
+    const handleChange = ({ selectedMultiple }) => {
+        setSelected(selectedMultiple.map((option) => option.key));
+    };
+
+    const handleAllToggle = () => {
+        if (selected.length === options.length) {
+            setSelected([]);
+        } else {
+            setSelected(options.map((e) => e.key));
+        }
+    };
+
+    const renderHeader = () => {
+        return (
+            <div
+                style={{
+                    padding: 'var(--gap-s)',
+                    boxShadow: 'inset 0 -1px 0 var(--color-light-border-secondary)',
+                }}
+            >
+                <Checkbox
+                    checked={selected.length === options.length}
+                    size='m'
+                    label='Выбрать все'
+                    onChange={handleAllToggle}
+                />
+            </div>
+        );
+    };
+
+    const presetProps = useSelectWithApply({
+        options,
+        selected,
+        onChange: handleChange,
+    });
+
+    return (
+        <div style={{ width: 320 }}>
+            <Select
+                placeholder='Выберите элемент'
+                label='Выбор с подтверждением'
+                block={true}
+                optionsListWidth='field'
+                Option={BaseOption}
+                {...presetProps}
+                optionsListProps={{ ...presetProps.optionsListProps, header: renderHeader() }}
+            />
+        </div>
+    );
+});
+```
+
+Сгруппированный список
+
+```jsx live
+const groups = new Array(15).fill().reduce((acc, _, groupIndex) => {
+    return acc.concat({
+        label: `Группа №${groupIndex + 1}`,
+        options: new Array(5).fill().map((_, index) => ({
+            key: index,
+            content: `Пункт ${groupIndex + 1}.${index + 1}`,
+        })),
+    });
+}, []);
+
+render(<Select label='Сгруппированный список' options={groups} Option={BaseOption} />);
+```
+
+Список, состоящий из PureCell
+
+```jsx live
+const renderPureCell = ({ text, amount, icon, horizontalPadding }) => {
+    return (
+        <PureCell verticalPadding='default' horizontalPadding={horizontalPadding}>
+            <PureCell.Graphics verticalAlign='center'>
+                <SuperEllipse size={40}>{icon}</SuperEllipse>
+            </PureCell.Graphics>
+            <PureCell.Content>
+                <PureCell.Main>
+                    <PureCell.Text titleColor='secondary' view='primary-small'>
+                        {text}
+                    </PureCell.Text>
+                    <PureCell.Amount
+                        value={amount}
+                        minorUnits={100}
+                        currency='RUR'
+                        color='primary'
+                        view={'withZeroMinorPart'}
+                        transparentMinor={true}
+                        teaxtView='primary-medium'
+                    />
+                </PureCell.Main>
+            </PureCell.Content>
+        </PureCell>
+    );
+};
+
+const renderSelected = ({ selected }) => {
+    return selected ? renderPureCell({ ...selected.value, horizontalPadding: 'none' }) : undefined;
+};
+
+const data = [
+    {
+        key: 'Account1',
+        value: { text: 'Зарплатный счёт', amount: 3405161, icon: <StarMIcon /> },
+    },
+    {
+        key: 'Account2',
+        value: { text: 'Накопительный счёт', amount: 6000024, icon: <SafeBoxMIcon /> },
+    },
+];
+
+const options = data.map((item) => ({
+    ...item,
+    content: renderPureCell({ ...item.value, horizontalPadding: 'left' }),
+}));
+
+render(
+    <Select
+        placeholder='Список из PureCell'
+        options={options}
+        Option={BaseOption}
+        size='xl'
+        valueRenderer={renderSelected}
+    />,
+);
+```
+
+Мобильный селект
+
+```jsx live
+const options = [
+    { key: '1', content: 'Neptunium' },
+    { key: '2', content: 'Plutonium' },
+    { key: '3', content: 'Americium' },
+    { key: '4', content: 'Curium' },
+    { key: '5', content: 'Berkelium' },
+    { key: '6', content: 'Californium' },
+    { key: '7', content: 'Einsteinium' },
+    { key: '8', content: 'Fermium' },
+];
+
+render(<SelectMobile options={options} placeholder='SelectMobile' Option={BaseOption} />);
+```
+
+PureCell в мобильном селекте
+
+```jsx live
+const renderPureCell = ({ text, amount, icon, horizontalPadding }) => {
+    return (
+        <PureCell verticalPadding='default' horizontalPadding={horizontalPadding}>
+            <PureCell.Graphics verticalAlign='center'>
+                <SuperEllipse size={40}>{icon}</SuperEllipse>
+            </PureCell.Graphics>
+            <PureCell.Content>
+                <PureCell.Main>
+                    <PureCell.Text titleColor='secondary' view='primary-small'>
+                        {text}
+                    </PureCell.Text>
+                    <PureCell.Amount
+                        value={amount}
+                        minorUnits={100}
+                        currency='RUR'
+                        color='primary'
+                        view={'withZeroMinorPart'}
+                        transparentMinor={true}
+                        teaxtView='primary-medium'
+                    />
+                </PureCell.Main>
+            </PureCell.Content>
+        </PureCell>
+    );
+};
+
+const renderSelected = ({ selected } = {}) => {
+    return selected ? renderPureCell({ ...selected.value, horizontalPadding: 'none' }) : undefined;
+};
+
+const data = [
+    {
+        key: 'Account1',
+        value: { text: 'Зарплатный счёт', amount: 3405161, icon: <StarMIcon /> },
+    },
+    {
+        key: 'Account2',
+        value: { text: 'Накопительный счёт', amount: 6000024, icon: <SafeBoxMIcon /> },
+    },
+];
+
+const options = data.map((item) => ({
+    ...item,
+    content: renderPureCell({ ...item.value, horizontalPadding: 'left' }),
+}));
+
+render(
+    <SelectMobile
+        options={options}
+        placeholder='SelectMobile'
+        Option={BaseOption}
+        valueRenderer={renderSelected}
+    />,
+);
+```
+
+Сгруппированный список в мобильном селекте
+
+```jsx live
+const groups = new Array(15).fill().reduce((acc, _, groupIndex) => {
+    return acc.concat({
+        label: `Группа №${groupIndex + 1}`,
+        options: new Array(5).fill().map((_, index) => ({
+            key: index,
+            content: `Пункт ${groupIndex + 1}.${index + 1}`,
+        })),
+    });
+}, []);
+
+render(<SelectMobile label='Сгруппированный список' options={groups} Option={BaseOption} />);
+```
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
 Компонент выпадающего списка.
 
 ```jsx live
@@ -101,7 +407,7 @@ render(() => {
     const [selected, setSelected] = React.useState([options[2].key, options[3].key]);
 
     const handleChange = ({ selectedMultiple }) => {
-        setSelected(selectedMultiple.map(option => option.key));
+        setSelected(selectedMultiple.map((option) => option.key));
     };
 
     return (
@@ -140,7 +446,7 @@ render(() => {
                 options={options}
                 placeholder='Выберите элемент'
                 open={open}
-                onOpen={payload => {
+                onOpen={(payload) => {
                     setOpen(payload.open);
                 }}
                 // Полностью управляемое открытие
@@ -148,7 +454,7 @@ render(() => {
                 //     setOpen(false);
                 // }}
             />
-            <Button onClick={() => setOpen(o => !o)}>{open ? 'Закрыть' : 'Открыть'}</Button>
+            <Button onClick={() => setOpen((o) => !o)}>{open ? 'Закрыть' : 'Открыть'}</Button>
         </Space>
     );
 });
@@ -206,7 +512,7 @@ render(() => {
     const [serialized, setSerialized] = React.useState();
     const [selected, setSelected] = React.useState([]);
 
-    const onSubmit = event => {
+    const onSubmit = (event) => {
         event.preventDefault();
 
         const form = event.target;
@@ -216,7 +522,7 @@ render(() => {
     };
 
     const handleChange = ({ selectedMultiple }) => {
-        setSelected(selectedMultiple.map(option => option.key));
+        setSelected(selectedMultiple.map((option) => option.key));
     };
 
     return (
@@ -314,7 +620,7 @@ render(<Select options={options} valueRenderer={valueRenderer} size='m' label='�
 Селект позволяет заменять или кастомизировать компоненты **Field**, **Option**, **OptionsList**, **Optgroup**, **Arrow**
 
 ```jsx live
-const BoldOption = props => (
+const BoldOption = (props) => (
     <Option {...props}>
         <b>{props.option.content}</b>
     </Option>
@@ -330,7 +636,7 @@ render(<Select options={options} label='Bold options' Option={BoldOption} />);
 ```
 
 ```jsx live
-const CustomField = props => <Field {...props} leftAddons={props.selected && <StarMIcon />} />;
+const CustomField = (props) => <Field {...props} leftAddons={props.selected && <StarMIcon />} />;
 
 const options = [
     { key: '1', content: 'Neptunium' },
@@ -534,7 +840,6 @@ render(
 
 ## Пресеты
 
-
 ### Выбор с подтверждением
 
 Используйте пресет `useSelectWithApply`, чтобы реализовать логику подтверждения выбора.
@@ -545,18 +850,18 @@ render(
 
 ```jsx live
 const options = [
-    { key: "40708810300024636781", content: "Валютный счёт $ ··6781", value: "USD ··6781" },
-    { key: "40701810200000000593", content: "Рублёвый счёт ₽ ··0593", value: "RUB ··0593" },
-    { key: "40700810000000017103", content: "Рублёвый счёт ₽ ··7103", value: "RUB ··7103" },
-    { key: "40817810668001680128", content: "Рублёвый счёт ₽ ··0128", value: "RUB ··0128" },
-    { key: "40832810700000000212", content: "Валютный счёт € ··0212", value: "EUR ··0212" },
+    { key: '40708810300024636781', content: 'Валютный счёт $ ··6781', value: 'USD ··6781' },
+    { key: '40701810200000000593', content: 'Рублёвый счёт ₽ ··0593', value: 'RUB ··0593' },
+    { key: '40700810000000017103', content: 'Рублёвый счёт ₽ ··7103', value: 'RUB ··7103' },
+    { key: '40817810668001680128', content: 'Рублёвый счёт ₽ ··0128', value: 'RUB ··0128' },
+    { key: '40832810700000000212', content: 'Валютный счёт € ··0212', value: 'EUR ··0212' },
 ];
 
 render(() => {
     const [selected, setSelected] = React.useState([]);
 
     const handleChange = ({ selectedMultiple }) => {
-        setSelected(selectedMultiple.map(option => option.key));
+        setSelected(selectedMultiple.map((option) => option.key));
     };
 
     return (
@@ -626,8 +931,8 @@ render(() => {
 ```jsx live
 const LIMIT = 10;
 
-const sleep = () => new Promise(r => setTimeout(r, 2000));
-const mockOptions = offset => ({
+const sleep = () => new Promise((r) => setTimeout(r, 2000));
+const mockOptions = (offset) => ({
     options: Array(LIMIT)
         .fill(0)
         .map((_, i) => ({
@@ -638,7 +943,7 @@ const mockOptions = offset => ({
 });
 
 render(() => {
-    const fetchOptions = offset => {
+    const fetchOptions = (offset) => {
         return sleep().then(() => {
             return mockOptions(offset);
         });
@@ -666,7 +971,7 @@ render(() => {
 ```jsx live
 const LIMIT = 15;
 
-const sleep = () => new Promise(r => setTimeout(r, 2000));
+const sleep = () => new Promise((r) => setTimeout(r, 2000));
 const mockOptions = (offset, limit, queryString) => ({
     options: Array(LIMIT)
         .fill(0)
