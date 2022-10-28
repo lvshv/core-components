@@ -11,6 +11,7 @@ export const Tabs = ({
     children,
     selectedId,
     scrollable,
+    collapsible,
     fullWidthScroll = false,
     keepMounted = false,
     dataTestId,
@@ -29,7 +30,7 @@ export const Tabs = ({
     );
 
     const tabs = tabsArray.filter(
-        tab => tab.props.id === selectedId || tab.props.keepMounted || keepMounted,
+        (tab) => tab.props.id === selectedId || tab.props.keepMounted || keepMounted,
     );
 
     return (
@@ -40,13 +41,14 @@ export const Tabs = ({
                 titles={titles}
                 selectedId={selectedId}
                 scrollable={scrollable}
+                collapsible={collapsible}
                 onChange={onChange}
                 dataTestId={dataTestId}
                 defaultMatch={defaultMatch}
                 fullWidthScroll={fullWidthScroll}
             />
 
-            {tabs.map(tab => cloneElement(tab, { hidden: tab.props.id !== selectedId }))}
+            {tabs.map((tab) => cloneElement(tab, { hidden: tab.props.id !== selectedId }))}
         </div>
     );
 };

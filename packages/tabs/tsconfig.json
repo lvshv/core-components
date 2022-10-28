@@ -1,5 +1,5 @@
 {
-    "include": ["src", "../../typings"],
+    "include": ["src", "../../typings", "../utils"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",
@@ -9,5 +9,11 @@
             "@alfalab/core-components-*": ["../*/src"]
         }
     },
-    "references": [{ "path": "../tag" }, { "path": "../keyboard-focusable" }]
+    "references": [
+      { "path": "../tag" },
+      { "path": "../keyboard-focusable" },
+      { "path": "../picker-button" },
+      { "path": "../select" },
+      { "path": "../badge" }
+    ]
 }

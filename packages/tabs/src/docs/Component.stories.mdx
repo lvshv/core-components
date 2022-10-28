@@ -38,12 +38,16 @@ import vars from '!!raw-loader!../vars.css';
         const props = TabsComponent !== TabsMobile ? {
             size: select('size', ['xxs', 'xs', 's', 'm', 'l', 'xl'], 'm'),
         } : {};
+        const desktopProps = TabsComponent === TabsDesktop ? {
+            collapsible: boolean('collapsible', false)
+        } : {};
         const responsiveAndMobileProps = TabsComponent !== TabsDesktop ? {
             fullWidthScroll: boolean('fullWidthScroll', false)
         } : {}
         return (
             <TabsComponent
                 {...props}
+                {...desktopProps}
                 {...responsiveAndMobileProps}
                 view={select('view', ['primary', 'secondary'], 'primary')}
                 selectedId={selectedId}
